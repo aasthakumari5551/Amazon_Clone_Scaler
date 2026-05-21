@@ -14,12 +14,14 @@ const addItem = asyncWrapper(async (req: Request, res: Response) => {
 });
 
 const updateItem = asyncWrapper(async (req: Request, res: Response) => {
-  const cart = await cartService.updateItem(req.user!.id, req.params.productId, req.body);
+  const productId = String(req.params.productId);
+  const cart = await cartService.updateItem(req.user!.id, productId, req.body);
   res.status(200).json(cart);
 });
 
 const removeItem = asyncWrapper(async (req: Request, res: Response) => {
-  await cartService.removeItem(req.user!.id, req.params.productId);
+  const productId = String(req.params.productId);
+  await cartService.removeItem(req.user!.id, productId);
   res.status(204).send();
 });
 
