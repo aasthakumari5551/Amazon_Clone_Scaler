@@ -1,17 +1,7 @@
+import "dotenv/config";
 import app from "./src/app";
+import { env } from "./src/config/env";
 
-const portValue = process.env.PORT;
-
-if (!portValue) {
-	throw new Error("PORT is not set in the environment");
-}
-
-const port = Number(portValue);
-
-if (Number.isNaN(port)) {
-	throw new Error("PORT must be a number");
-}
-
-app.listen(port, () => {
-	console.log(`Server running on port ${port}`);
+app.listen(env.PORT, () => {
+	console.log(`Server running on port ${env.PORT}`);
 });

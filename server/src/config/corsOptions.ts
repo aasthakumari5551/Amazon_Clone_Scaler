@@ -1,9 +1,8 @@
 import type { CorsOptions } from "cors";
-
-const clientUrl = process.env.CLIENT_URL;
+import { env } from "./env";
 
 const corsOptions: CorsOptions = {
-  origin: clientUrl ? [clientUrl] : false,
+  origin: [env.CLIENT_URL],
   credentials: true
 };
 
