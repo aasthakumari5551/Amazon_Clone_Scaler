@@ -23,7 +23,7 @@ const CategoryBar = () => {
 
   return (
     <div className="bg-(--amazon-navy-light) text-white">
-      <div className="mx-auto flex max-w-6xl items-center gap-4 overflow-x-auto px-4 py-2 text-xs font-medium uppercase tracking-wide">
+      <div className="flex w-full items-center gap-4 overflow-x-auto px-4 py-2 text-xs font-medium uppercase tracking-wide">
         {categories.map((category) => (
           <Link
             key={category.id}

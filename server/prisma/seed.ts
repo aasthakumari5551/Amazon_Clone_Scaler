@@ -50,6 +50,11 @@ const productSeeds: ProductSeed[] = [
   { name: "Stride Smartwatch Series 5", price: 179.25, category: "electronics" },
   { name: "Pulse Bluetooth Speaker", price: 59.99, category: "electronics" },
   { name: "Vector Mechanical Keyboard", price: 89.0, category: "electronics" },
+  { name: "Nova ANC Earbuds Pro", price: 79.99, category: "electronics" },
+  { name: "Lumen Smart Desk Lamp", price: 45.0, category: "electronics" },
+  { name: "Helix Portable SSD 1TB", price: 109.0, category: "electronics" },
+  { name: "Aero Home Router AX3000", price: 129.0, category: "electronics" },
+  { name: "Quill Stylus Tablet", price: 159.0, category: "electronics" },
 
   { name: "Modern JavaScript Mastery", price: 29.99, category: "books" },
   { name: "Design Systems Handbook", price: 34.5, category: "books" },
@@ -57,6 +62,9 @@ const productSeeds: ProductSeed[] = [
   { name: "History of Innovation", price: 22.4, category: "books" },
   { name: "Mindful Productivity", price: 16.0, category: "books" },
   { name: "The Clean Code Companion", price: 31.25, category: "books" },
+  { name: "The Remote Work Playbook", price: 21.0, category: "books" },
+  { name: "Healthy Kitchen Essentials", price: 19.75, category: "books" },
+  { name: "Everyday Finance Basics", price: 17.5, category: "books" },
 
   { name: "AeroFit Running Shoes", price: 74.99, category: "clothing" },
   { name: "Cotton Lounge Hoodie", price: 42.0, category: "clothing" },
@@ -64,6 +72,9 @@ const productSeeds: ProductSeed[] = [
   { name: "Linen Summer Shirt", price: 35.25, category: "clothing" },
   { name: "Thermal Base Layer Set", price: 58.0, category: "clothing" },
   { name: "Classic Leather Belt", price: 24.99, category: "clothing" },
+  { name: "CloudSoft Jogger Set", price: 52.0, category: "clothing" },
+  { name: "Urban Trail Windbreaker", price: 64.0, category: "clothing" },
+  { name: "Comfort Knit Tee Pack", price: 28.0, category: "clothing" },
 
   { name: "Ceramic Nonstick Pan", price: 28.75, category: "home-kitchen" },
   { name: "Bamboo Cutting Board", price: 19.25, category: "home-kitchen" },
@@ -71,6 +82,9 @@ const productSeeds: ProductSeed[] = [
   { name: "Stoneware Dinner Set", price: 64.0, category: "home-kitchen" },
   { name: "SoftGlow Table Lamp", price: 47.5, category: "home-kitchen" },
   { name: "Cloud Comfort Pillow", price: 32.0, category: "home-kitchen" },
+  { name: "ZenMist Air Purifier", price: 119.0, category: "home-kitchen" },
+  { name: "Oakwood Spice Rack", price: 23.5, category: "home-kitchen" },
+  { name: "Luxe Bath Towel Set", price: 36.0, category: "home-kitchen" },
 
   { name: "Flex Pro Yoga Mat", price: 26.5, category: "sports" },
   { name: "Carbon Fiber Tennis Racket", price: 88.0, category: "sports" },
@@ -78,6 +92,8 @@ const productSeeds: ProductSeed[] = [
   { name: "Trailblaze Hiking Backpack", price: 69.0, category: "sports" },
   { name: "Pulse Resistance Bands", price: 21.75, category: "sports" },
   { name: "StormFit Training Gloves", price: 18.5, category: "sports" },
+  { name: "Summit Trek Poles", price: 54.0, category: "sports" },
+  { name: "Velocity Running Shorts", price: 29.0, category: "sports" },
 
   { name: "Rose Bloom Face Serum", price: 27.99, category: "beauty" },
   { name: "SilkTouch Moisturizer", price: 19.5, category: "beauty" },
@@ -85,6 +101,8 @@ const productSeeds: ProductSeed[] = [
   { name: "Velvet Matte Foundation", price: 24.25, category: "beauty" },
   { name: "Herbal Hair Mask", price: 16.0, category: "beauty" },
   { name: "Nectar Fragrance Mist", price: 22.0, category: "beauty" },
+  { name: "Radiant Eye Cream", price: 18.5, category: "beauty" },
+  { name: "CalmGlow Face Mist", price: 15.25, category: "beauty" },
 
   { name: "Solar Explorer Kit", price: 29.0, category: "toys" },
   { name: "Magnetic Builder Blocks", price: 34.5, category: "toys" },
@@ -92,13 +110,17 @@ const productSeeds: ProductSeed[] = [
   { name: "Galaxy RC Rover", price: 44.75, category: "toys" },
   { name: "Mini Artist Studio", price: 21.5, category: "toys" },
   { name: "Classic Story Cubes", price: 14.0, category: "toys" },
+  { name: "Rocket Launch Craft Kit", price: 27.5, category: "toys" },
+  { name: "Ocean Explorer Drone", price: 59.0, category: "toys" },
 
   { name: "Organic Trail Mix", price: 9.5, category: "grocery" },
   { name: "Cold Brew Coffee Pack", price: 13.25, category: "grocery" },
   { name: "Himalayan Sea Salt", price: 6.99, category: "grocery" },
   { name: "Golden Honey Jar", price: 11.5, category: "grocery" },
   { name: "Protein Granola Bites", price: 8.75, category: "grocery" },
-  { name: "Premium Olive Oil", price: 17.0, category: "grocery" }
+  { name: "Premium Olive Oil", price: 17.0, category: "grocery" },
+  { name: "Roasted Almond Mix", price: 10.5, category: "grocery" },
+  { name: "Daily Oats Value Pack", price: 12.0, category: "grocery" }
 ];
 
 const brandMap: Record<string, string[]> = {

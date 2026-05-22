@@ -12,7 +12,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       <Navbar />
       <CategoryBar />
       <main className="flex-1 bg-[var(--amazon-light)]">
-        <div className="mx-auto max-w-6xl px-4 py-10">{children}</div>
+        <div className="w-full">{children}</div>
       </main>
       <Footer />
     </div>
