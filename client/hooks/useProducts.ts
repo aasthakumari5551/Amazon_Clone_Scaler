@@ -8,6 +8,7 @@ export const useProducts = (filters: Record<string, string | number | undefined>
   const [products, setProducts] = useState<Product[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(20);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const filterKey = JSON.stringify(filters);
@@ -21,6 +22,7 @@ export const useProducts = (filters: Record<string, string | number | undefined>
         const response = await productService.getProducts({ ...filters, page });
         setProducts(response.data);
         setTotal(response.total);
+        setLimit(response.limit ?? 20);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load products");
       } finally {
@@ -31,5 +33,5 @@ export const useProducts = (filters: Record<string, string | number | undefined>
     fetchProducts();
   }, [filterKey, page]);
 
-  return { products, total, page, setPage, isLoading, error };
+  return { products, total, page, limit, setPage, isLoading, error };
 };

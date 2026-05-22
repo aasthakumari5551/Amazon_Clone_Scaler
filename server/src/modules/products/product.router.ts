@@ -5,6 +5,7 @@ import productController from "./product.controller";
 const productRouter = Router();
 
 productRouter.get("/categories", productController.getCategories);
+productRouter.get("/meta", productController.getFiltersMeta);
 productRouter.get("/", productController.getProducts);
 productRouter.get("/:id", productController.getProductById);
 

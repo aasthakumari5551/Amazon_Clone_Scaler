@@ -16,6 +16,12 @@ export type Product = {
   name: string;
   description: string;
   price: number;
+  brand: string;
+  rating: number;
+  reviewCount: number;
+  isFreeDelivery: boolean;
+  discountPercent: number;
+  condition: "NEW" | "RENEWED" | "USED";
   stock: number;
   createdAt: string;
   categoryId: string;
@@ -28,4 +34,11 @@ export type ProductListResponse = {
   total: number;
   page: number;
   limit: number;
+};
+
+export type ProductFiltersMeta = {
+  minPrice: number;
+  maxPrice: number;
+  brands: Array<{ name: string; count: number }>;
+  conditions: Array<{ name: "NEW" | "RENEWED" | "USED"; count: number }>;
 };

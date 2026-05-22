@@ -7,7 +7,9 @@ const ProductSpecifications = ({ description }: ProductSpecificationsProps) => (
     <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">
       Specifications
     </h4>
-    <p>{description}</p>
+        <h3 className="text-sm font-semibold text-zinc-900">About this item</h3>
+        <div className="mt-3 h-px w-full bg-zinc-100" />
+        <p className="mt-3 text-sm text-zinc-600">{description}</p>
   </div>
 );
 

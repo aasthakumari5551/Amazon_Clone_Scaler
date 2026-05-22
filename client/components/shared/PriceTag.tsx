@@ -8,7 +8,7 @@ type PriceTagProps = {
 const PriceTag = ({ amount, originalPrice }: PriceTagProps) => {
   return (
     <div className="flex items-baseline gap-2">
-      <span className="text-xl font-semibold text-zinc-900">
+      <span className="text-2xl font-semibold text-zinc-900">
         {formatCurrency(amount)}
       </span>
       {originalPrice ? (

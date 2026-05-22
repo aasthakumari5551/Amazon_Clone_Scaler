@@ -1,4 +1,4 @@
-import type { Product, ProductListResponse, Category } from "@/types/product.types";
+import type { Product, ProductListResponse, Category, ProductFiltersMeta } from "@/types/product.types";
 import { api } from "./api";
 
 export const productService = {
@@ -16,5 +16,6 @@ export const productService = {
     return api.get<ProductListResponse>(path);
   },
   getProductById: (id: string) => api.get<Product>(`/products/${id}`),
-  getCategories: () => api.get<Category[]>("/products/categories")
+  getCategories: () => api.get<Category[]>("/products/categories"),
+  getFiltersMeta: () => api.get<ProductFiltersMeta>("/products/meta")
 };

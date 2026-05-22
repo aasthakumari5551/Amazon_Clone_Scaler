@@ -20,9 +20,11 @@ const getProductById = async (id: string) => {
 };
 
 const getCategories = () => productRepository.findCategories();
+const getFiltersMeta = () => productRepository.getFiltersMeta();
 
 export default {
   getProducts,
   getProductById,
-  getCategories
+  getCategories,
+  getFiltersMeta
 };

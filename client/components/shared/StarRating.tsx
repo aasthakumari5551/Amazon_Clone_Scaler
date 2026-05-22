@@ -19,7 +19,7 @@ const StarRating = ({ rating = 4.5, count = 128 }: StarRatingProps) => {
   return (
     <div className="flex items-center gap-2 text-sm">
       <div className="flex items-center gap-0.5">{stars}</div>
-      <span className="text-xs text-zinc-500">({count})</span>
+      <span className="text-xs text-blue-700">({count})</span>
     </div>
   );
 };

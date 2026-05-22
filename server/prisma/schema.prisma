@@ -20,6 +20,12 @@ enum OrderStatus {
   CANCELLED
 }
 
+enum ProductCondition {
+  NEW
+  RENEWED
+  USED
+}
+
 model User {
   id           String   @id @default(uuid())
   email        String   @unique
@@ -43,6 +49,12 @@ model Product {
   name        String
   description String
   price       Decimal        @db.Decimal(10, 2)
+  brand       String
+  rating      Decimal        @db.Decimal(2, 1)
+  reviewCount Int
+  isFreeDelivery Boolean     @default(false)
+  discountPercent Int        @default(0)
+  condition   ProductCondition @default(NEW)
   stock       Int
   createdAt   DateTime       @default(now())
   categoryId  String

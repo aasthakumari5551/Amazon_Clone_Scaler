@@ -25,9 +25,11 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="grid gap-8 lg:grid-cols-2">
-      <ProductImageCarousel images={product.images} name={product.name} />
-      <ProductDetailInfo product={product} />
+    <div className="mx-auto max-w-6xl px-2">
+      <div className="grid gap-8 lg:grid-cols-[420px_1fr]">
+        <ProductImageCarousel images={product.images} name={product.name} />
+        <ProductDetailInfo product={product} />
+      </div>
     </div>
   );
 };

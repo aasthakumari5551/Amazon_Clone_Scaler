@@ -101,6 +101,51 @@ const productSeeds: ProductSeed[] = [
   { name: "Premium Olive Oil", price: 17.0, category: "grocery" }
 ];
 
+const brandMap: Record<string, string[]> = {
+  electronics: ["Amzon", "NexTek", "ByteWave", "Aurora", "Pulse"],
+  books: ["Storyline", "PaperTrail", "Inkspire", "MindWorks"],
+  clothing: ["Loom", "Drift", "Coastline", "Everyday"],
+  "home-kitchen": ["Hearth", "CloudHome", "KitchenCraft", "Nordic"],
+  sports: ["Stride", "Summit", "Trailblaze", "Flex"],
+  beauty: ["Glow", "Silk", "Bloom", "Aura"],
+  toys: ["Spark", "Orbit", "Playhouse", "Wonder"],
+  grocery: ["Harvest", "Pantry", "Greenfield", "Daily"]
+};
+
+const conditions = ["NEW", "RENEWED", "USED"] as const;
+
+const buildCatalog = () => {
+  const expanded: Array<ProductSeed & { brand: string; rating: number; reviewCount: number; isFreeDelivery: boolean; discountPercent: number; condition: (typeof conditions)[number] }> = [];
+
+  productSeeds.forEach((seed, index) => {
+    const brands = brandMap[seed.category] ?? ["Amzon"];
+    for (let variant = 0; variant < 10; variant += 1) {
+      const brand = brands[(index + variant) % brands.length];
+      const priceFactor = 1 + (variant % 5) * 0.12;
+      const price = Number((seed.price * priceFactor + variant * 3).toFixed(2));
+      const rating = Number((3.6 + ((index + variant) % 15) * 0.1).toFixed(1));
+      const reviewCount = 50 + (index + variant) * 7;
+      const isFreeDelivery = price >= 499;
+      const discountPercent = ((index + variant) % 6) * 5;
+      const condition = conditions[(index + variant) % conditions.length];
+
+      expanded.push({
+        name: `${seed.name} ${brand} Edition ${variant + 1}`,
+        price,
+        category: seed.category,
+        brand,
+        rating,
+        reviewCount,
+        isFreeDelivery,
+        discountPercent,
+        condition
+      });
+    }
+  });
+
+  return expanded;
+};
+
 const descriptionTemplates = [
   "Designed for daily use with premium materials and lasting comfort.",
   "Compact, reliable, and crafted for modern routines.",
@@ -144,30 +189,47 @@ const main = async () => {
     });
   const categoryLookup = new Map(categoryMap.map((cat) => [cat.slug, cat.id]));
 
-  const products: Array<{ id: string; name: string }> =
-    await prisma.$transaction(
-    productSeeds.map((product, index) => {
-      const categoryId = categoryLookup.get(product.category);
+  const catalog = buildCatalog();
 
-      if (!categoryId) {
-        throw new Error(`Missing category for ${product.category}`);
-      }
+  const products: Array<{ id: string; name: string }> = [];
+  const chunkSize = 50;
 
-      return prisma.product.create({
-        data: {
-          name: product.name,
-          description: buildDescription(product.name, index),
-          price: toDecimal(product.price),
-          stock: 12 + (index % 11),
-          categoryId
-        },
-        select: {
-          id: true,
-          name: true
+  for (let i = 0; i < catalog.length; i += chunkSize) {
+    const slice = catalog.slice(i, i + chunkSize);
+    const created = await Promise.all(
+      slice.map((product, index) => {
+        const categoryId = categoryLookup.get(product.category);
+
+        if (!categoryId) {
+          throw new Error(`Missing category for ${product.category}`);
         }
-      });
-    })
-  );
+
+        const absoluteIndex = i + index;
+
+        return prisma.product.create({
+          data: {
+            name: product.name,
+            description: buildDescription(product.name, absoluteIndex),
+            price: toDecimal(product.price),
+            brand: product.brand,
+            rating: toDecimal(product.rating),
+            reviewCount: product.reviewCount,
+            isFreeDelivery: product.isFreeDelivery,
+            discountPercent: product.discountPercent,
+            condition: product.condition,
+            stock: 12 + (absoluteIndex % 11),
+            categoryId
+          },
+          select: {
+            id: true,
+            name: true
+          }
+        });
+      })
+    );
+
+    products.push(...created);
+  }
 
   const imageData = products.flatMap((product: { id: string; name: string }, index: number) => {
     const baseSeed = `${product.id}-${index}`;

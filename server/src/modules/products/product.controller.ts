@@ -26,8 +26,14 @@ const getCategories = asyncWrapper(async (req: Request, res: Response) => {
   res.status(200).json(categories);
 });
 
+const getFiltersMeta = asyncWrapper(async (req: Request, res: Response) => {
+  const meta = await productService.getFiltersMeta();
+  res.status(200).json(meta);
+});
+
 export default {
   getProducts,
   getProductById,
-  getCategories
+  getCategories,
+  getFiltersMeta
 };
