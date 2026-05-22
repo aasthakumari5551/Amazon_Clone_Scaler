@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import ProductImageCarousel from "@/components/product/ProductImageCarousel";
 import ProductDetailInfo from "@/components/product/ProductDetailInfo";
+import ProductBuyBox from "@/components/product/ProductBuyBox";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import ErrorBanner from "@/components/shared/ErrorBanner";
@@ -25,10 +26,20 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-2">
-      <div className="grid gap-8 lg:grid-cols-[420px_1fr]">
+    <div className="w-full px-4 py-4">
+      <div className="mb-3 flex flex-wrap gap-2 text-xs text-zinc-500">
+        <span>Computers & Accessories</span>
+        <span>›</span>
+        <span>Accessories & Peripherals</span>
+        <span>›</span>
+        <span>PC Gaming Peripherals</span>
+        <span>›</span>
+        <span>Gaming Keyboards</span>
+      </div>
+      <div className="grid gap-6 lg:grid-cols-[520px_1fr_280px]">
         <ProductImageCarousel images={product.images} name={product.name} />
         <ProductDetailInfo product={product} />
+        <ProductBuyBox product={product} />
       </div>
     </div>
   );

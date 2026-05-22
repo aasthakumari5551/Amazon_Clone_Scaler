@@ -14,13 +14,16 @@ const ProductImageCarousel = ({ images, name }: ProductImageCarouselProps) => {
   const activeImage = images[activeIndex];
 
   return (
-    <div className="flex flex-col-reverse gap-4 md:flex-row">
-      <div className="flex gap-2 overflow-x-auto md:flex-col md:overflow-visible">
+    <div className="flex gap-4">
+      <div className="flex flex-col gap-2">
+        <div className="flex h-16 w-16 items-center justify-center rounded-md border border-zinc-300 bg-zinc-50 text-[10px] font-semibold text-zinc-500">
+          VIDEO
+        </div>
         {images.map((image, index) => (
           <button
             key={image.id}
             onClick={() => setActiveIndex(index)}
-            className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-md border md:h-20 md:w-20 ${
+            className={`relative h-16 w-16 overflow-hidden rounded-md border ${
               index === activeIndex
                 ? "border-(--amazon-orange) ring-1 ring-(--amazon-orange)"
                 : "border-zinc-200"
@@ -30,20 +33,23 @@ const ProductImageCarousel = ({ images, name }: ProductImageCarouselProps) => {
           </button>
         ))}
       </div>
-      <div className="relative h-80 w-full overflow-hidden rounded-xl bg-zinc-100 md:h-[420px]">
-        {activeImage ? (
-          <Image
-            src={activeImage.url}
-            alt={activeImage.altText}
-            fill
-            sizes="(max-width: 1024px) 90vw, 420px"
-            className="object-cover"
-          />
-        ) : (
-          <div className="flex h-full items-center justify-center text-sm text-zinc-500">
-            No image
-          </div>
-        )}
+      <div className="flex-1">
+        <div className="relative h-[420px] w-full overflow-hidden rounded-lg bg-zinc-100">
+          {activeImage ? (
+            <Image
+              src={activeImage.url}
+              alt={activeImage.altText}
+              fill
+              sizes="(max-width: 1024px) 90vw, 520px"
+              className="object-cover"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-sm text-zinc-500">
+              No image
+            </div>
+          )}
+        </div>
+        <p className="mt-2 text-center text-xs text-blue-700">Click to see full view</p>
       </div>
     </div>
   );
