@@ -18,7 +18,13 @@ const CartItem = ({ item, onUpdate, onRemove }: CartItemProps) => {
     <div className="flex gap-4 rounded-2xl border border-zinc-200 bg-white p-4">
       <div className="relative h-24 w-24 overflow-hidden rounded-xl bg-zinc-100">
         {image ? (
-          <Image src={image.url} alt={image.altText} fill className="object-cover" />
+          <Image
+            src={image.url}
+            alt={image.altText}
+            fill
+            sizes="96px"
+            className="object-cover"
+          />
         ) : null}
       </div>
       <div className="flex flex-1 flex-col gap-2">

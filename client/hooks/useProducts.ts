@@ -10,6 +10,7 @@ export const useProducts = (filters: Record<string, string | number | undefined>
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const filterKey = JSON.stringify(filters);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,7 +29,7 @@ export const useProducts = (filters: Record<string, string | number | undefined>
     };
 
     fetchProducts();
-  }, [filters, page]);
+  }, [filterKey, page]);
 
   return { products, total, page, setPage, isLoading, error };
 };
