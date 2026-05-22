@@ -5,12 +5,11 @@ import { verifyToken } from "../utils/jwt";
 
 const authenticate = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new AppError("Unauthorized", 401);
-  }
-
-  const token = authHeader.replace("Bearer ", "").trim();
+  const bearerToken = authHeader?.startsWith("Bearer ")
+    ? authHeader.replace("Bearer ", "").trim()
+    : undefined;
+  const cookieToken = req.cookies?.auth_token;
+  const token = bearerToken ?? cookieToken;
 
   if (!token) {
     throw new AppError("Unauthorized", 401);
