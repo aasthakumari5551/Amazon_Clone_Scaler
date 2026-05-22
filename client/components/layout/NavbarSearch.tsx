@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { ChevronDown, Search } from "lucide-react";
 
 const NavbarSearch = () => {
   const router = useRouter();
@@ -24,19 +25,26 @@ const NavbarSearch = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className="flex flex-1 items-center overflow-hidden rounded-full bg-white text-zinc-900"
+      className="flex flex-1 items-center overflow-hidden rounded-md bg-white text-zinc-900"
     >
+      <button
+        type="button"
+        className="flex items-center gap-1 bg-zinc-100 px-3 py-2 text-xs text-zinc-700"
+      >
+        All
+        <ChevronDown className="h-3 w-3" />
+      </button>
       <input
         value={search}
         onChange={(event) => setSearch(event.target.value)}
         placeholder="Search products"
-        className="flex-1 px-4 py-2 text-sm outline-none"
+        className="flex-1 px-3 py-2 text-sm outline-none"
       />
       <button
         type="submit"
-        className="bg-(--amazon-orange) px-4 py-2 text-sm font-semibold text-zinc-900"
+        className="flex items-center justify-center bg-(--amazon-orange) px-4 py-2 text-sm font-semibold text-zinc-900"
       >
-        Search
+        <Search className="h-4 w-4" />
       </button>
     </form>
   );

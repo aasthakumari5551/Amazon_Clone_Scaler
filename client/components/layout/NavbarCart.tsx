@@ -8,14 +8,16 @@ const NavbarCart = () => {
   const { itemCount } = useCartStore();
 
   return (
-    <Link href="/cart" className="relative flex items-center gap-2 text-sm">
-      <ShoppingCart className="h-5 w-5" />
-      <span>Cart</span>
-      {itemCount > 0 ? (
-        <span className="absolute -right-3 -top-2 rounded-full bg-(--amazon-orange) px-1.5 text-xs font-semibold text-zinc-900">
-          {itemCount}
-        </span>
-      ) : null}
+    <Link href="/cart" className="relative flex items-center gap-2 text-xs">
+      <div className="relative">
+        <ShoppingCart className="h-6 w-6" />
+        {itemCount > 0 ? (
+          <span className="absolute -right-2 -top-2 rounded-full bg-(--amazon-orange) px-1.5 text-[10px] font-semibold text-zinc-900">
+            {itemCount}
+          </span>
+        ) : null}
+      </div>
+      <span className="hidden font-semibold text-white md:inline">Cart</span>
     </Link>
   );
 };

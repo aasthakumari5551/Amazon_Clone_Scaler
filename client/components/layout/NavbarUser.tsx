@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -10,17 +11,24 @@ const NavbarUser = () => {
 
   if (!isAuthenticated) {
     return (
-      <Link href="/login" className="text-sm hover:text-(--amazon-orange)">
-        Sign In
+      <Link href="/login" className="leading-tight">
+        <div className="text-[10px] text-zinc-300">Hello, sign in</div>
+        <div className="flex items-center gap-1 text-xs font-semibold text-white">
+          Account & Lists
+          <ChevronDown className="h-3 w-3" />
+        </div>
       </Link>
     );
   }
 
   return (
-    <div className="flex items-center gap-3 text-sm">
-      <span className="hidden sm:inline">Hi, {user?.fullName}</span>
-      <button onClick={logout} className="text-xs uppercase tracking-wide text-zinc-200">
-        Sign Out
+    <div className="flex items-center gap-3">
+      <button onClick={logout} className="leading-tight text-left">
+        <div className="text-[10px] text-zinc-300">Hello, {user?.fullName ?? "Account"}</div>
+        <div className="flex items-center gap-1 text-xs font-semibold text-white">
+          Account & Lists
+          <ChevronDown className="h-3 w-3" />
+        </div>
       </button>
     </div>
   );
