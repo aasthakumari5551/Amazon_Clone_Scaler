@@ -2,13 +2,13 @@ import Link from "next/link";
 
 const CartEmptyState = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-dashed border-zinc-200 bg-white py-16">
-      <p className="text-sm text-zinc-600">Your cart is empty.</p>
+    <div className="rounded-md bg-white p-6 text-sm text-zinc-600">
+      <p>Your cart is empty.</p>
       <Link
         href="/"
-        className="rounded-full bg-[var(--amazon-orange)] px-6 py-2 text-sm font-semibold text-zinc-900"
+        className="mt-3 inline-block rounded-full bg-[#ffd814] px-6 py-2 text-xs font-semibold text-zinc-900"
       >
-        Continue Shopping
+        Continue shopping
       </Link>
     </div>
   );
