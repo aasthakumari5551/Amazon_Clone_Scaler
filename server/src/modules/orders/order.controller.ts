@@ -13,7 +13,7 @@ const getOrders = asyncWrapper(async (req: Request, res: Response) => {
   res.status(200).json(orders);
 });
 
-const getOrderById = asyncWrapper(async (req: Request, res: Response) => {
+const getOrderById = asyncWrapper(async (req: Request<{ id: string }>, res: Response) => {
   const order = await orderService.getOrderById(req.params.id, req.user!.id);
   res.status(200).json(order);
 });

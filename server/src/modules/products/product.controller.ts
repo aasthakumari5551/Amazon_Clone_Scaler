@@ -16,7 +16,7 @@ const getProducts = asyncWrapper(async (req: Request, res: Response) => {
   res.status(200).json(result);
 });
 
-const getProductById = asyncWrapper(async (req: Request, res: Response) => {
+const getProductById = asyncWrapper(async (req: Request<{ id: string }>, res: Response) => {
   const product = await productService.getProductById(req.params.id);
   res.status(200).json(product);
 });
