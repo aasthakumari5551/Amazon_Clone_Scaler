@@ -23,30 +23,26 @@ const ProductImageCarousel = ({ images, name }: ProductImageCarouselProps) => {
           <button
             key={image.id}
             onClick={() => setActiveIndex(index)}
-            className={`relative h-16 w-16 overflow-hidden rounded-md border ${
-              index === activeIndex
-                ? "border-(--amazon-orange) ring-1 ring-(--amazon-orange)"
-                : "border-zinc-200"
+            className={`relative h-16 w-16 overflow-hidden rounded-md ${
+              index === activeIndex ? "ring-2 ring-[#ffce12]" : "border border-zinc-200"
             }`}
           >
-            <Image src={image.url} alt={image.altText} fill className="object-cover" />
+            <Image src={image.url} alt={image.altText} fill className="object-contain" />
           </button>
         ))}
       </div>
       <div className="flex-1">
-        <div className="relative h-[420px] w-full overflow-hidden rounded-lg bg-zinc-100">
+        <div className="relative h-130 w-full overflow-hidden rounded-lg bg-white">
           {activeImage ? (
             <Image
               src={activeImage.url}
               alt={activeImage.altText}
               fill
               sizes="(max-width: 1024px) 90vw, 520px"
-              className="object-cover"
+              className="object-contain"
             />
           ) : (
-            <div className="flex h-full items-center justify-center text-sm text-zinc-500">
-              No image
-            </div>
+            <div className="flex h-full items-center justify-center text-sm text-zinc-500">No image</div>
           )}
         </div>
         <p className="mt-2 text-center text-xs text-blue-700">Click to see full view</p>

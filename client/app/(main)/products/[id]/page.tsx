@@ -1,9 +1,10 @@
 "use client";
 
 import { useParams } from "next/navigation";
-import ProductImageCarousel from "@/components/product/ProductImageCarousel";
-import ProductDetailInfo from "@/components/product/ProductDetailInfo";
-import ProductBuyBox from "@/components/product/ProductBuyBox";
+import Link from "next/link";
+import ProductImageCarousel from "../../../../components/product/ProductImageCarousel";
+import ProductDetailInfo from "../../../../components/product/ProductDetailInfo";
+import ProductBuyBox from "../../../../components/product/ProductBuyBox";
 import { useProductDetail } from "@/hooks/useProductDetail";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import ErrorBanner from "@/components/shared/ErrorBanner";
@@ -27,14 +28,18 @@ const ProductDetailPage = () => {
 
   return (
     <div className="w-full px-3 py-4">
-      <div className="mb-3 flex flex-wrap gap-2 text-xs text-zinc-500">
-        <span>Computers & Accessories</span>
+      <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-zinc-500">
+        <Link href="/" className="text-xs text-zinc-500 hover:underline">Home</Link>
         <span>›</span>
-        <span>Accessories & Peripherals</span>
-        <span>›</span>
-        <span>PC Gaming Peripherals</span>
-        <span>›</span>
-        <span>Gaming Keyboards</span>
+        {product?.category ? (
+          <>
+            <Link href={`/?categoryId=${product.category.id}`} className="text-xs text-zinc-500 hover:underline">
+              {product.category.name}
+            </Link>
+            <span>›</span>
+          </>
+        ) : null}
+        <span className="text-xs text-zinc-500">{product.name}</span>
       </div>
       <div className="grid gap-6 lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)_280px] lg:items-start">
         <ProductImageCarousel images={product.images} name={product.name} />
