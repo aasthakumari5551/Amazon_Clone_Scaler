@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { MapPin, Globe, ChevronDown } from "lucide-react";
 import { useAuthStore } from "@/store/useAuthStore";
 import { orderService } from "@/services/orderService";
@@ -19,7 +19,7 @@ import NavbarCart from "./NavbarCart";
 import NavbarUser from "./NavbarUser";
 
 const Navbar = () => {
-  const { user, isAuthenticated } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const [latestOrder, setLatestOrder] = useState<Order | null>(null);
 
   useEffect(() => {
@@ -117,7 +117,9 @@ const Navbar = () => {
           </Dialog>
         ) : null}
 
-        <NavbarSearch />
+        <Suspense fallback={<div className="h-10 flex-1" />}>
+          <NavbarSearch />
+        </Suspense>
 
         <div className="ml-auto flex items-center gap-4 text-xs">
           <button className="hidden items-center gap-1 text-xs font-semibold text-white md:flex">
