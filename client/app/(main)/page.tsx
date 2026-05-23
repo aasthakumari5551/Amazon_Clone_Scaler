@@ -11,7 +11,7 @@ import { useProducts } from "@/hooks/useProducts";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import ErrorBanner from "@/components/shared/ErrorBanner";
 import { productService } from "@/services/productService";
-import type { Category, Product, ProductFiltersMeta } from "@/types/product.types";
+import type { Category, ProductFiltersMeta } from "@/types/product.types";
 
 const HomePage = () => {
   const router = useRouter();
@@ -179,13 +179,13 @@ const HomePage = () => {
           <div className="relative">
             <div
               ref={posterScrollRef}
-              className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="flex gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] scrollbar-none [&::-webkit-scrollbar]:hidden"
             >
               {heroSlides.map((poster) => (
                 <Link
                   key={poster.id}
                   href={`/products/${poster.id}`}
-                  className="relative h-[390px] w-[260px] shrink-0 overflow-hidden rounded-[18px] bg-black shadow"
+                  className="relative h-97.5 w-65 shrink-0 overflow-hidden rounded-[18px] bg-black shadow"
                 >
                   <Image
                     src={poster.image}
@@ -195,7 +195,7 @@ const HomePage = () => {
                     sizes="260px"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/10 to-transparent" />
                   <div className="absolute left-4 top-4 right-4 text-white">
                     <p className="text-[11px] uppercase tracking-wide text-white/80">
                       {poster.brand}

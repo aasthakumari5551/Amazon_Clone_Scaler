@@ -30,9 +30,11 @@ const CheckoutPage = () => {
 
   return (
     <ProtectedRoute>
-      <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <AddressForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
-        <OrderReviewPanel cart={{ id: "", userId: "", items, subtotal, total }} />
+      <div className="w-full px-3 py-4">
+        <div className="grid gap-6 lg:grid-cols-[2fr_1fr]">
+          <AddressForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
+          <OrderReviewPanel cart={{ id: "", userId: "", items, subtotal, total }} />
+        </div>
       </div>
     </ProtectedRoute>
   );

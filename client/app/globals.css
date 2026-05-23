@@ -132,3 +132,42 @@
     @apply font-sans;
   }
 }
+
+/* Custom range slider styling for the sidebar price filter */
+@layer components {
+  .amazon-range {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    background: transparent;
+  }
+  .amazon-range:focus {
+    outline: none;
+  }
+  .amazon-range::-webkit-slider-runnable-track {
+    height: 8px;
+    background: #2162a1;
+    border-radius: 9999px;
+  }
+  .amazon-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #ffffff;
+    border: 4px solid #2162a1;
+    margin-top: -5px;
+  }
+  .amazon-range::-moz-range-track {
+    height: 8px;
+    background: #2162a1;
+    border-radius: 9999px;
+  }
+  .amazon-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #ffffff;
+    border: 4px solid #2162a1;
+  }
+}

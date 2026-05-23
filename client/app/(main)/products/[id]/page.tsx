@@ -26,7 +26,7 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="w-full px-4 py-4">
+    <div className="w-full px-3 py-4">
       <div className="mb-3 flex flex-wrap gap-2 text-xs text-zinc-500">
         <span>Computers & Accessories</span>
         <span>›</span>
@@ -36,7 +36,7 @@ const ProductDetailPage = () => {
         <span>›</span>
         <span>Gaming Keyboards</span>
       </div>
-      <div className="grid gap-6 lg:grid-cols-[520px_1fr_280px]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,520px)_minmax(0,1fr)_280px] lg:items-start">
         <ProductImageCarousel images={product.images} name={product.name} />
         <ProductDetailInfo product={product} />
         <ProductBuyBox product={product} />

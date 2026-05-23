@@ -7,7 +7,7 @@ type ProductGridProps = {
 
 const ProductGrid = ({ products }: ProductGridProps) => {
   return (
-    <div className="divide-y divide-zinc-200 rounded-xl border border-zinc-200 bg-white">
+    <div className="bg-white">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

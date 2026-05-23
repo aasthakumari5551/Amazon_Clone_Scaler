@@ -19,14 +19,16 @@ const OrdersPage = () => {
 
   return (
     <ProtectedRoute>
-      <div className="space-y-4">
-        {orders.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-zinc-200 bg-white p-10 text-center text-sm text-zinc-500">
-            No orders yet.
-          </div>
-        ) : (
-          orders.map((order) => <OrderCard key={order.id} order={order} />)
-        )}
+      <div className="w-full px-3 py-4">
+        <div className="space-y-4">
+          {orders.length === 0 ? (
+            <div className="rounded-2xl border border-dashed border-zinc-200 bg-white p-10 text-center text-sm text-zinc-500">
+              No orders yet.
+            </div>
+          ) : (
+            orders.map((order) => <OrderCard key={order.id} order={order} />)
+          )}
+        </div>
       </div>
     </ProtectedRoute>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import type { ProductFiltersMeta } from "@/types/product.types";
 
@@ -50,7 +50,14 @@ const FilterSidebar = ({ meta }: FilterSidebarProps) => {
 
   const minPrice = meta?.minPrice ?? 0;
   const maxPrice = meta?.maxPrice ?? 0;
-  const currentMax = Number(params.get("maxPrice") ?? maxPrice);
+  const paramMax = Number(params.get("maxPrice") ?? maxPrice);
+  const [currentMax, setCurrentMax] = useState<number>(paramMax);
+  const isDraggingRef = useRef(false);
+
+  useEffect(() => {
+    // sync when params/meta change (e.g., external navigation)
+    setCurrentMax(Number(params.get("maxPrice") ?? maxPrice));
+  }, [params, maxPrice]);
 
   return (
     <aside className="hidden w-64 shrink-0 space-y-4 md:block">
@@ -92,8 +99,23 @@ const FilterSidebar = ({ meta }: FilterSidebarProps) => {
               min={minPrice}
               max={maxPrice}
               value={currentMax}
-              onChange={(event) => updateParam("maxPrice", event.target.value)}
-              className="w-full"
+              onChange={(event) => {
+                setCurrentMax(Number(event.target.value));
+                isDraggingRef.current = true;
+              }}
+              onMouseUp={() => {
+                isDraggingRef.current = false;
+                updateParam("maxPrice", String(currentMax));
+              }}
+              onTouchEnd={() => {
+                isDraggingRef.current = false;
+                updateParam("maxPrice", String(currentMax));
+              }}
+              onKeyUp={(event) => {
+                // apply on Enter
+                if (event.key === "Enter") updateParam("maxPrice", String(currentMax));
+              }}
+              className="w-full amazon-range"
             />
             <div className="flex items-center justify-between text-[11px] text-zinc-500">
               <span>₹{minPrice.toLocaleString()}</span>
