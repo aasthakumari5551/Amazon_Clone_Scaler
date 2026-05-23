@@ -13,7 +13,8 @@ const CartPage = () => {
 
   return (
     <ProtectedRoute>
-      <div className="grid gap-4 lg:grid-cols-[3fr_1fr]">
+      <div className="w-full px-3 py-4">
+        <div className="grid gap-4 lg:grid-cols-[3fr_1fr]">
         <div className="space-y-4">
           <div className="rounded-md bg-white p-4">
             <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
@@ -58,6 +59,7 @@ const CartPage = () => {
             onCheckout={() => router.push("/checkout")}
           />
         </div>
+      </div>
       </div>
     </ProtectedRoute>
   );
