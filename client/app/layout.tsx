@@ -3,6 +3,7 @@ import { Manrope, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import ThemeProvider from "@/components/shared/ThemeProvider";
+import AuthHydrator from "@/components/shared/AuthHydrator";
 
 const manrope = Manrope({
   variable: "--font-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[var(--amazon-light)] text-zinc-900">
         <ThemeProvider>
+          <AuthHydrator />
           {children}
           <Toaster richColors />
         </ThemeProvider>
